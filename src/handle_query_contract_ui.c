@@ -22,6 +22,9 @@ void set_uint265_with_prefix(const uint8_t *amount,
 
 // Set UI for any address screen.
 static void set_address_ui(ethQueryContractUI_t *msg, address_t *value) {
+    if( msg->msgLength < 42) {
+        THROW(EXCEPTION_OVERFLOW);
+    }
     // Prefix the address with `0x`.
     msg->msg[0] = '0';
     msg->msg[1] = 'x';
@@ -110,17 +113,14 @@ void handle_query_contract_ui(void *parameters) {
             break;
 
         case BURN:
-            switch (msg->screenIndex) {
-                case 0:
-                    set_bytes32_as_int_ui(msg, &context->tx.body.burn.token_id, "Token Id");
-                    break;
-                default:
-                    PRINTF("Received an invalid screenIndex\n");
-                    msg->result = ETH_PLUGIN_RESULT_ERROR;
-                    return;
+            if (msg->screenIndex == 0) {
+                set_bytes32_as_int_ui(msg, &context->tx.body.burn.token_id, "Token Id");
+            } else {
+                PRINTF("Received an invalid screenIndex\n");
+                msg->result = ETH_PLUGIN_RESULT_ERROR;
+                return;
             }
             break;
-
         case CHANGE_DELEGATE_EXE_CONFIG_1:
             switch (msg->screenIndex) {
                 case 0:
@@ -368,17 +368,14 @@ void handle_query_contract_ui(void *parameters) {
             break;
 
         case MINT:
-            switch (msg->screenIndex) {
-                case 0:
-                    set_addr_ui(msg, &context->tx.body.mint.to, "To");
-                    break;
-                default:
-                    PRINTF("Received an invalid screenIndex\n");
-                    msg->result = ETH_PLUGIN_RESULT_ERROR;
-                    return;
+            if (msg->screenIndex == 0) {
+                set_addr_ui(msg, &context->tx.body.mint.to, "To");
+            } else {
+                PRINTF("Received an invalid screenIndex\n");
+                msg->result = ETH_PLUGIN_RESULT_ERROR;
+                return;
             }
             break;
-
         case MIRROR:
         case MIRROR_WITH_SIGN:
             switch (msg->screenIndex) {
@@ -558,5 +555,9 @@ void handle_query_contract_ui(void *parameters) {
                     return;
             }
             break;
+        default:
+            PRINTF("Selector index: %d not supported\n", context->selectorIndex);
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            return;
     }
 }
