@@ -4,7 +4,17 @@ This is a plugin for the Ethereum application which helps parsing and displaying
 
 ## Prerequisite
 
-To setup the working environment follow the steps on ledger guide.
+Clone the plugin to a new folder.
+
+```shell
+git clone https://github.com/libertify/ledger-plugin-lens.git
+```
+
+Then in the same folder clone the app-ethereum.
+
+```shell
+git clone --recurse-submodules https://github.com/LedgerHQ/app-ethereum.git     #app-ethereum
+```
 
 ## Documentation
 
@@ -64,9 +74,9 @@ For both change_delegate_exe_config functions and change_delegate_exe_config_wit
 
 ## Build
 
-To build the plugin, go back to your docker setup. Open a new terminal window, and in the plugin_dev/ folder, run
+To build the plugin, go to your folder with Ethereum app and plugin. Open a new terminal window and run:
 ```shell
-sudo docker run --rm -ti -v "$(realpath .):/app" --user $(id -u $USER):$(id -g $USER) ghcr.io/ledgerhq/ledger-app-builder/ledger-app-dev-tools:latest.
+sudo docker run --rm -ti -v "$(realpath .):/app" --user $(id -u $USER):$(id -g $USER) ghcr.io/ledgerhq/ledger-app-builder/ledger-app-dev-tools:latest
 ```
 
 In the container, go to the plugin repository, then to the tests/ folder.
