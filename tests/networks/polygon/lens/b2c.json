@@ -2,7 +2,7 @@
   "chainId": 1,
   "contracts": [
     {
-      "address": "0xc1e77ee73403b8a7478884915aa599932a677870",
+      "address": "0xdb46d1dc155634fbc732f92e853b10b288ad5a1d",
       "contractName": "TransparentUpgradeableProxy",
       "selectors": {
         "0x4727ce3a": {
@@ -143,7 +143,7 @@
       }
     },
     {
-      "address": "0x9cd0d07ab772e42ed3497dd379360dabcd94352a",
+      "address": "0xd4f2f33680fccb36748fa9831851643781608844",
       "contractName": "TransparentUpgradeableProxy",
       "selectors": {
         "0x86cf48e7": {
@@ -169,7 +169,7 @@
       }
     },
     {
-      "address": "0xc3a1fabd7f8d290f7b0c45aa88af6e9c9e267843",
+      "address": "0xe7e7ead361f3aacd73a61a9bd6c10ca17f38e945",
       "contractName": "TransparentUpgradeableProxy",
       "selectors": {
         "0x42966c68": {
