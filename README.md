@@ -29,6 +29,9 @@ Smart contracts covered by this plugin are:
 | Mumbai | LensHub Proxy        | [0xC1E77eE73403B8a7478884915aA599932A677870](https://mumbai.polygonscan.com/address/0xC1E77eE73403B8a7478884915aA599932A677870#code) |
 | Mumbai | TokenHandleRegistry Proxy        | [0x9cD0d07AB772e42ed3497DD379360daBcD94352A](https://mumbai.polygonscan.com/address/0x9cD0d07AB772e42ed3497DD379360daBcD94352A) |
 | Mumbai | LensHandle Proxy        | [0xc3a1fabd7f8d290f7b0C45AA88af6e9c9E267843](https://mumbai.polygonscan.com/address/0xc3a1fabd7f8d290f7b0C45AA88af6e9c9E267843) |
+| Polygon | LensHub         | [0xDb46d1Dc155634FbC732f92E853b10B288AD5a1d](https://polygonscan.com/address/0xDb46d1Dc155634FbC732f92E853b10B288AD5a1d) |
+| Polygon | TokenHandleRegistry         | [0xD4F2F33680FCCb36748FA9831851643781608844](https://polygonscan.com/address/0xD4F2F33680FCCb36748FA9831851643781608844#code) |
+| Polygon | LensHandle        | [0xe7E7EaD361f3AaCD73A61A9bD6C10cA17F38E945](https://polygonscan.com/address/0xe7E7EaD361f3AaCD73A61A9bD6C10cA17F38E945) |
 
 ...
 
