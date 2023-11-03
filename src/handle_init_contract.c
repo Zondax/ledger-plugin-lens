@@ -53,6 +53,8 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
             __attribute__((fallthrough));
         case SET_BLOCK_STATUS:
             __attribute__((fallthrough));
+        case SET_BLOCK_STATUS_WITH_SIG:
+            __attribute__((fallthrough));
         case SET_FOLLOW_MOD:
             __attribute__((fallthrough));
         case SET_FOLLOW_MOD_WITH_SIG:
@@ -101,8 +103,6 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
             context->next_param = DATA_OFFSET;
             break;
         case POST_WITH_SIGN:
-            __attribute__((fallthrough));
-        case SET_BLOCK_STATUS_WITH_SIG:
             context->next_param = PROFILE_ID_OFFSET;
             break;
         case WHITE_LIST_PROFILE_CREATE:

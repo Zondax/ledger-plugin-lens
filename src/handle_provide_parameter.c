@@ -589,11 +589,16 @@ static void handle_set_block_status_with_sign(ethPluginProvideParameter_t *msg,
         context->go_to_offset = false;
     }
     switch (context->next_param) {
-        case PROFILE_ID_OFFSET:
-            if (!U2BE_from_parameter(msg->parameter,
-                                     &context->tx.body.set_block_status.profileId_offset)) {
-                msg->result = ETH_PLUGIN_RESULT_ERROR;
-            }
+        case PROFILE_ID:
+            copy_parameter(context->tx.body.set_block_status.byProfileId.value,
+                           msg->parameter,
+                           sizeof(context->tx.body.set_block_status.byProfileId.value));
+            context->next_param = OFFSET;
+            break;
+        case OFFSET:
+            context->next_param = IDS_OFFSET;
+            break;
+        case IDS_OFFSET:
             context->next_param = SIGNATURE_SIGNER;
             break;
         case SIGNATURE_SIGNER:
@@ -605,14 +610,6 @@ static void handle_set_block_status_with_sign(ethPluginProvideParameter_t *msg,
             copy_parameter(context->tx.body.set_block_status.deadline.value,
                            msg->parameter,
                            sizeof(context->tx.body.set_block_status.deadline.value));
-            context->offset = context->tx.body.set_block_status.profileId_offset;
-            context->go_to_offset = true;
-            context->next_param = PROFILE_ID;
-            break;
-        case PROFILE_ID:
-            copy_parameter(context->tx.body.set_block_status.byProfileId.value,
-                           msg->parameter,
-                           sizeof(context->tx.body.set_block_status.byProfileId.value));
             context->next_param = NONE;
             break;
         case NONE:
