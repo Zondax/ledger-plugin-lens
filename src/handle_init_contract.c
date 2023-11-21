@@ -108,6 +108,8 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
         case WHITE_LIST_PROFILE_CREATE:
             context->next_param = MODULE;
             break;
+        case DISABLE_TOKEN_GUARDIAN:
+            break;
         default:
             PRINTF("Missing selectorIndex: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

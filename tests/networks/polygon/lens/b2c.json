@@ -139,6 +139,11 @@
           "erc20OfInterest": [],
           "method": "quote_with_sign",
           "plugin": "Lens"
+        },
+        "0x2248f76d": {
+          "erc20OfInterest": [],
+          "method": "disable_token_guardian",
+          "plugin": "Lens"
         }
       }
     },
