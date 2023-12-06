@@ -1,75 +1,72 @@
 #include "lens_plugin.h"
-static const uint8_t ACT_SEL[SELECTOR_SIZE] = {0xc5, 0xd5, 0xd9, 0x6a};
-static const uint8_t ACT_WITH_SIGN_SEL[SELECTOR_SIZE] = {0xc8, 0x66, 0x42, 0xc7};
-static const uint8_t BURN_SEL[SELECTOR_SIZE] = {0x42, 0x96, 0x6c, 0x68};
-static const uint8_t CHANGE_DELEGATE_EXE_CONFIG_1_SEL[SELECTOR_SIZE] = {0x51, 0xc3, 0x65, 0x9c};
-static const uint8_t CHANGE_DELEGATE_EXE_CONFIG_2_SEL[SELECTOR_SIZE] = {0xc1, 0xf4, 0xb4, 0x0a};
-static const uint8_t CHANGE_DELEGATE_EXE_CONFIG__WITH_SIGN_SEL[SELECTOR_SIZE] = {0x49,
-                                                                                 0x26,
-                                                                                 0xc4,
-                                                                                 0xed};
-static const uint8_t COLLECT_SEL[SELECTOR_SIZE] = {0x47, 0x27, 0xce, 0x3a};
-static const uint8_t COLLECT_WITH_SIGN_SEL[SELECTOR_SIZE] = {0xb7, 0x90, 0x2e, 0x73};
-static const uint8_t COMMENT_SEL[SELECTOR_SIZE] = {0xb2, 0x73, 0xb4, 0xa7};
-static const uint8_t COMMENT_WITH_SIGN_SEL[SELECTOR_SIZE] = {0xb4, 0x2d, 0xf5, 0x1a};
-static const uint8_t CREATE_PROFILE_SEL[SELECTOR_SIZE] = {0x56, 0x0a, 0x4d, 0xb1};
-static const uint8_t FOLLOW_SEL[SELECTOR_SIZE] = {0x4b, 0x73, 0x12, 0xa9};
-static const uint8_t FOLLOW_WITH_SIGN_SEL[SELECTOR_SIZE] = {0x4d, 0x7b, 0x35, 0xa0};
-static const uint8_t LINK_SEL[SELECTOR_SIZE] = {0x86, 0xCF, 0x48, 0xE7};
-static const uint8_t LINK_WITH_SIG_SEL[SELECTOR_SIZE] = {0x7e, 0x50, 0x2f, 0xe0};
-static const uint8_t MINT_SEL[SELECTOR_SIZE] = {0xf0, 0x8e, 0x8f, 0x5e};
-static const uint8_t MIRROR_SEL[SELECTOR_SIZE] = {0xf9, 0x06, 0x04, 0xd1};
-static const uint8_t MIRROR_WITH_SIGN_SEL[SELECTOR_SIZE] = {0xe6, 0xa4, 0x02, 0xb5};
-static const uint8_t POST_SEL[SELECTOR_SIZE] = {0x66, 0xb0, 0xdc, 0xd3};
-static const uint8_t POST_WITH_SIGN_SEL[SELECTOR_SIZE] = {0x90, 0x7c, 0xd7, 0xd2};
-static const uint8_t QUOTE_SEL[SELECTOR_SIZE] = {0xF0, 0xba, 0x35, 0xf0};
-static const uint8_t QUOTE_WITH_SIGN_SEL[SELECTOR_SIZE] = {0x65, 0xf2, 0x9f, 0x27};
-static const uint8_t SET_BLOCK_STATUS_SEL[SELECTOR_SIZE] = {0xfb, 0x82, 0x7e, 0x82};
-static const uint8_t SET_BLOCK_STATUS_WITH_SIG_SEL[SELECTOR_SIZE] = {0xC6, 0xd4, 0x59, 0x44};
-static const uint8_t SET_FOLLOW_MOD_SEL[SELECTOR_SIZE] = {0x6d, 0xea, 0x40, 0xb3};
-static const uint8_t SET_FOLLOW_MOD_WITH_SIG_SEL[SELECTOR_SIZE] = {0xce, 0x30, 0xbb, 0x4f};
-static const uint8_t SET_PROFILE_METADATA_SEL[SELECTOR_SIZE] = {0xef, 0xe4, 0xfd, 0x83};
-static const uint8_t SET_PROFILE_METADATA_WITH_SIGN_SEL[SELECTOR_SIZE] = {0x6d, 0x0f, 0xd6, 0x58};
-static const uint8_t UNFOLLOW_SEL[SELECTOR_SIZE] = {0x81, 0x5e, 0xd0, 0x4a};
-static const uint8_t UNFOLLOW_WITH_SIGN_SEL[SELECTOR_SIZE] = {0x80, 0x9d, 0x89, 0x47};
-static const uint8_t WHITE_LIST_PROFILE_CREATE_SEL[SELECTOR_SIZE] = {0x20, 0x90, 0x55, 0x06};
-static const uint8_t UNLINK_SEL[SELECTOR_SIZE] = {0x0c, 0x65, 0xb3, 0x9d};
-static const uint8_t UNLINK_WITH_SIG_SEL[SELECTOR_SIZE] = {0x82, 0x5a, 0xb1, 0x64};
-static const uint8_t DISABLE_TOKEN_GUARDIAN_SEL[SELECTOR_SIZE] = {0x22, 0x48, 0xf7, 0x6d};
+static const uint32_t ACT_SEL = 0xc5d5d96a;
+static const uint32_t ACT_WITH_SIGN_SEL = 0xc86642c7;
+static const uint32_t BURN_SEL = 0x42966c68;
+static const uint32_t CHANGE_DELEGATE_EXE_CONFIG_1_SEL = 0x51c3659c;
+static const uint32_t CHANGE_DELEGATE_EXE_CONFIG_2_SEL = 0xc1f4b40a;
+static const uint32_t CHANGE_DELEGATE_EXE_CONFIG__WITH_SIGN_SEL = 0x4926c4ed;
+static const uint32_t COLLECT_SEL = 0x4727ce3a;
+static const uint32_t COLLECT_WITH_SIGN_SEL = 0xb7902e73;
+static const uint32_t COMMENT_SEL = 0xb273b4a7;
+static const uint32_t COMMENT_WITH_SIGN_SEL = 0xb42df51a;
+static const uint32_t CREATE_PROFILE_SEL = 0x560a4db1;
+static const uint32_t FOLLOW_SEL = 0x4b7312a9;
+static const uint32_t FOLLOW_WITH_SIGN_SEL = 0x4d7b35a0;
+static const uint32_t LINK_SEL = 0x86CF48E7;
+static const uint32_t LINK_WITH_SIG_SEL = 0x7e502fe0;
+static const uint32_t MINT_SEL = 0xf08e8f5e;
+static const uint32_t MIRROR_SEL = 0xf90604d1;
+static const uint32_t MIRROR_WITH_SIGN_SEL = 0xe6a402b5;
+static const uint32_t POST_SEL = 0x66b0dcd3;
+static const uint32_t POST_WITH_SIGN_SEL = 0x907cd7d2;
+static const uint32_t QUOTE_SEL = 0xF0ba35f0;
+static const uint32_t QUOTE_WITH_SIGN_SEL = 0x65f29f27;
+static const uint32_t SET_BLOCK_STATUS_SEL = 0xfb827e82;
+static const uint32_t SET_BLOCK_STATUS_WITH_SIG_SEL = 0xC6d45944;
+static const uint32_t SET_FOLLOW_MOD_SEL = 0x6dea40b3;
+static const uint32_t SET_FOLLOW_MOD_WITH_SIG_SEL = 0xce30bb4f;
+static const uint32_t SET_PROFILE_METADATA_SEL = 0xefe4fd83;
+static const uint32_t SET_PROFILE_METADATA_WITH_SIGN_SEL = 0x6d0fd658;
+static const uint32_t UNFOLLOW_SEL = 0x815ed04a;
+static const uint32_t UNFOLLOW_WITH_SIGN_SEL = 0x809d8947;
+static const uint32_t WHITE_LIST_PROFILE_CREATE_SEL = 0x20905506;
+static const uint32_t UNLINK_SEL = 0x0c65b39d;
+static const uint32_t UNLINK_WITH_SIG_SEL = 0x825ab164;
+static const uint32_t DISABLE_TOKEN_GUARDIAN_SEL = 0x2248f76d;
 
 // Array of all the different ens selectors. Make sure this follows the same order as the
 // enum defined in `lens_plugin.h`
-const uint8_t *const LENS_SELECTORS[NUM_SELECTORS] = {ACT_SEL,
-                                                      ACT_WITH_SIGN_SEL,
-                                                      BURN_SEL,
-                                                      CHANGE_DELEGATE_EXE_CONFIG_1_SEL,
-                                                      CHANGE_DELEGATE_EXE_CONFIG_2_SEL,
-                                                      CHANGE_DELEGATE_EXE_CONFIG__WITH_SIGN_SEL,
-                                                      COLLECT_SEL,
-                                                      COLLECT_WITH_SIGN_SEL,
-                                                      COMMENT_SEL,
-                                                      COMMENT_WITH_SIGN_SEL,
-                                                      CREATE_PROFILE_SEL,
-                                                      FOLLOW_SEL,
-                                                      FOLLOW_WITH_SIGN_SEL,
-                                                      LINK_SEL,
-                                                      LINK_WITH_SIG_SEL,
-                                                      MINT_SEL,
-                                                      MIRROR_SEL,
-                                                      MIRROR_WITH_SIGN_SEL,
-                                                      POST_SEL,
-                                                      POST_WITH_SIGN_SEL,
-                                                      QUOTE_SEL,
-                                                      QUOTE_WITH_SIGN_SEL,
-                                                      SET_BLOCK_STATUS_SEL,
-                                                      SET_BLOCK_STATUS_WITH_SIG_SEL,
-                                                      SET_FOLLOW_MOD_SEL,
-                                                      SET_FOLLOW_MOD_WITH_SIG_SEL,
-                                                      SET_PROFILE_METADATA_SEL,
-                                                      SET_PROFILE_METADATA_WITH_SIGN_SEL,
-                                                      UNFOLLOW_SEL,
-                                                      UNFOLLOW_WITH_SIGN_SEL,
-                                                      WHITE_LIST_PROFILE_CREATE_SEL,
-                                                      UNLINK_SEL,
-                                                      UNLINK_WITH_SIG_SEL,
-                                                      DISABLE_TOKEN_GUARDIAN_SEL};
+const uint32_t LENS_SELECTORS[NUM_SELECTORS] = {ACT_SEL,
+                                                ACT_WITH_SIGN_SEL,
+                                                BURN_SEL,
+                                                CHANGE_DELEGATE_EXE_CONFIG_1_SEL,
+                                                CHANGE_DELEGATE_EXE_CONFIG_2_SEL,
+                                                CHANGE_DELEGATE_EXE_CONFIG__WITH_SIGN_SEL,
+                                                COLLECT_SEL,
+                                                COLLECT_WITH_SIGN_SEL,
+                                                COMMENT_SEL,
+                                                COMMENT_WITH_SIGN_SEL,
+                                                CREATE_PROFILE_SEL,
+                                                FOLLOW_SEL,
+                                                FOLLOW_WITH_SIGN_SEL,
+                                                LINK_SEL,
+                                                LINK_WITH_SIG_SEL,
+                                                MINT_SEL,
+                                                MIRROR_SEL,
+                                                MIRROR_WITH_SIGN_SEL,
+                                                POST_SEL,
+                                                POST_WITH_SIGN_SEL,
+                                                QUOTE_SEL,
+                                                QUOTE_WITH_SIGN_SEL,
+                                                SET_BLOCK_STATUS_SEL,
+                                                SET_BLOCK_STATUS_WITH_SIG_SEL,
+                                                SET_FOLLOW_MOD_SEL,
+                                                SET_FOLLOW_MOD_WITH_SIG_SEL,
+                                                SET_PROFILE_METADATA_SEL,
+                                                SET_PROFILE_METADATA_WITH_SIGN_SEL,
+                                                UNFOLLOW_SEL,
+                                                UNFOLLOW_WITH_SIGN_SEL,
+                                                WHITE_LIST_PROFILE_CREATE_SEL,
+                                                UNLINK_SEL,
+                                                UNLINK_WITH_SIG_SEL,
+                                                DISABLE_TOKEN_GUARDIAN_SEL};
