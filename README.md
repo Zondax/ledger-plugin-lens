@@ -72,6 +72,7 @@ Smart contracts covered by this plugin are:
 | white_list_profile_create             | 0x20905506 |<table> <tbody> <tr><td><code>address profileCreator</code></td></tr> <tr><td><code>bool whitelist</code></td></tr></tbody> </table>|
 | unlink                                | 0x0c65b39d |<table> <tbody> <tr><td><code>uint256 handle_id</code></td></tr> <tr><td><code>uint256 profile_id</code></td></tr></tbody> </table>|
 | unlink_with_sig                       | 0x825ab164 |<table> <tbody> <tr><td><code>uint256 handle_id</code></td></tr> <tr><td><code>uint256 profile_id</code></td></tr></tbody> <tr><td><code>uint256 signatureDeadline</code></td></tr></table>|
+| disable_token_guardian                | 0x2248f76d | no parameters |
 
 For both change_delegate_exe_config functions and change_delegate_exe_config_with_sign, LENS plugin will only support signing transactions with 1 delegated executor and 1 approval.
 

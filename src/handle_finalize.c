@@ -78,6 +78,9 @@ void handle_finalize(ethPluginFinalize_t *msg) {
         case CHANGE_DELEGATE_EXE_CONFIG_WITH_SIGN:
             msg->numScreens = 5;
             break;
+        case DISABLE_TOKEN_GUARDIAN:
+            msg->numScreens = 1;
+            break;
         default:
             msg->result = ETH_PLUGIN_RESULT_ERROR;
             return;

@@ -35,6 +35,7 @@ static const uint8_t UNFOLLOW_WITH_SIGN_SEL[SELECTOR_SIZE] = {0x80, 0x9d, 0x89, 
 static const uint8_t WHITE_LIST_PROFILE_CREATE_SEL[SELECTOR_SIZE] = {0x20, 0x90, 0x55, 0x06};
 static const uint8_t UNLINK_SEL[SELECTOR_SIZE] = {0x0c, 0x65, 0xb3, 0x9d};
 static const uint8_t UNLINK_WITH_SIG_SEL[SELECTOR_SIZE] = {0x82, 0x5a, 0xb1, 0x64};
+static const uint8_t DISABLE_TOKEN_GUARDIAN_SEL[SELECTOR_SIZE] = {0x22, 0x48, 0xf7, 0x6d};
 
 // Array of all the different ens selectors. Make sure this follows the same order as the
 // enum defined in `lens_plugin.h`
@@ -70,4 +71,5 @@ const uint8_t *const LENS_SELECTORS[NUM_SELECTORS] = {ACT_SEL,
                                                       UNFOLLOW_WITH_SIGN_SEL,
                                                       WHITE_LIST_PROFILE_CREATE_SEL,
                                                       UNLINK_SEL,
-                                                      UNLINK_WITH_SIG_SEL};
+                                                      UNLINK_WITH_SIG_SEL,
+                                                      DISABLE_TOKEN_GUARDIAN_SEL};

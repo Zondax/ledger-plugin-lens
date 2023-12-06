@@ -2,16 +2,16 @@ import { processTest, populateTransaction } from "../test.fixture";
 
 const contractName = "TransparentUpgradeableProxy"; // <= Name of the smart contract
 
-const testLabel = "mumbai_hub_mint"; // <= Name of the test
-const testDirSuffix = "hub_mint"; // <= directory to compare device snapshots to
-const testNetwork = "mumbai";
+const testLabel = "polyhub_disable_token_guardian"; // <= Name of the test
+const testDirSuffix = "polyhub_disable_token_guardian"; // <= directory to compare device snapshots to
+const testNetwork = "polygon";
 const signedPlugin = false;
 
-const contractAddr = "0xc3a1fabd7f8d290f7b0c45aa88af6e9c9e267843"; // <= Address of the smart contract
+const contractAddr = "0xdb46d1dc155634fbc732f92e853b10b288ad5a1d"; // <= Address of the smart contract
 const chainID = 1;
 
 const inputData =
-  "0xf08e8f5e00000000000000000000000071c7656ec7ab88b098defb751b7401b5f6d8976f000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000057465737465000000000000000000000000000000000000000000000000000000";
+  "0x2248f76d";
 // Create serializedTx and remove the "0x" prefix
 const value = "3.1";
 const serializedTx = populateTransaction(

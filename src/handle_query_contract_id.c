@@ -107,7 +107,9 @@ void handle_query_contract_id(ethQueryContractID_t *msg) {
         case WHITE_LIST_PROFILE_CREATE:
             strlcpy(msg->version, "Whitelist Profile Creator", msg->versionLength);
             break;
-
+        case DISABLE_TOKEN_GUARDIAN:
+            strlcpy(msg->version, "Disable Token Guardian", msg->versionLength);
+            break;
         default:
             PRINTF("Selector index: %d not supported\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

@@ -5,7 +5,7 @@
 #include <string.h>
 
 // Number of selectors defined in this plugin. Should match the enum `selector_t`.
-#define NUM_SELECTORS 33
+#define NUM_SELECTORS 34
 
 // Name of the plugin.
 #define PLUGIN_NAME "LENS"
@@ -51,6 +51,7 @@ typedef enum {
     WHITE_LIST_PROFILE_CREATE,
     UNLINK,
     UNLINK_WITH_SIG,
+    DISABLE_TOKEN_GUARDIAN,
 
 } selector_t;
 

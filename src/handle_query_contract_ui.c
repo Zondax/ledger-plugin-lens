@@ -554,6 +554,16 @@ void handle_query_contract_ui(ethQueryContractUI_t *msg) {
                     ret = false;
             }
             break;
+        case DISABLE_TOKEN_GUARDIAN:
+            if (msg->screenIndex == 0) {
+                strlcpy(msg->title, "", msg->titleLength);
+                strlcpy(msg->msg, "Tx with no parameters", msg->msgLength);
+                ret = true;
+            } else {
+                PRINTF("Received an invalid screenIndex\n");
+                ret = false;
+            }
+            break;
         default:
             PRINTF("Selector index: %d not supported\n", context->selectorIndex);
             ret = false;

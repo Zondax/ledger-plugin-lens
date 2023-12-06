@@ -1236,7 +1236,8 @@ void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
         case WHITE_LIST_PROFILE_CREATE:
             handle_whitelist_mod(msg, context);
             break;
-
+        case DISABLE_TOKEN_GUARDIAN:
+            break;
         default:
             PRINTF("Selector Index not supported: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
