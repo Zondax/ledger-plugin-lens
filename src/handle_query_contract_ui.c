@@ -26,7 +26,7 @@ static bool set_uint265_with_prefix(const uint8_t *amount,
 // Set UI for any address screen.
 static bool set_address_ui(ethQueryContractUI_t *msg, address_t *value) {
     if (msg->msgLength < 42) {
-        THROW(EXCEPTION_OVERFLOW);
+        return false;
     }
     // Prefix the address with `0x`.
     msg->msg[0] = '0';
